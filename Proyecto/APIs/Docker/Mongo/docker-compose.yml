@@ -1,0 +1,30 @@
+services:
+  mongo_reservations:
+    image: mongo:6.0
+    container_name: mongo_reservations
+    restart: always
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_reservations_data:/data/db
+    networks:
+      - micro_net
+
+  mongo_notifications:
+    image: mongo:6.0
+    container_name: mongo_notifications
+    restart: always
+    ports:
+      - "27019:27017"
+    volumes:
+      - mongo_notifications_data:/data/db
+    networks:
+      - micro_net
+
+volumes:
+  mongo_reservations_data:
+  mongo_notifications_data:
+
+networks:
+  micro_net:
+    driver: bridge
